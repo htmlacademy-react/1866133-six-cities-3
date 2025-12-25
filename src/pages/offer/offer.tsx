@@ -17,7 +17,7 @@ const Offer = ():JSX.Element => {
     type,
     price,
     //city,
-    //isFavorite,
+    isFavorite,
     isPremium,
     rating,
     description,
@@ -72,7 +72,9 @@ const Offer = ():JSX.Element => {
                   <svg className="offer__bookmark-icon" width="31" height="33">
                     <use xlinkHref="#icon-bookmark"></use>
                   </svg>
-                  <span className="visually-hidden">To bookmarks</span>
+                  <span className="visually-hidden">
+                    ${isFavorite ? 'In bookmarks' : 'To bookmarks'}
+                  </span>
                 </button>
               </div>
               <OfferReting rating={rating} />
@@ -99,7 +101,7 @@ const Offer = ():JSX.Element => {
           <OfferMap />
         </section>
         <div className="container">
-          <NearPlaces otherOffersData={otherOffersData} isOffer/>
+          <NearPlaces otherOffersData={otherOffersData} />
         </div>
       </main>
     </div>

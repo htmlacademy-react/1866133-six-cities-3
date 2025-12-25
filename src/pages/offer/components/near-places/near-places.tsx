@@ -25,30 +25,34 @@ type NearPlacesPropsType = {
     rating: number;
     previewImage: string;
   }>;
-  isOffer: boolean;
 }
 
-const NearPlaces = ({ otherOffersData, isOffer }: NearPlacesPropsType) => (
-  <section className="near-places places">
-    <h2 className="near-places__title">Other places in the neighbourhood</h2>
-    <div className="near-places__list places__list">
-      {
-        structuredClone(otherOffersData).map((offer) => (
-          <PlaceCard
-            key={offer.id}
-            title={offer.title}
-            type={offer.type}
-            price={offer.price}
-            isPremium={offer.isPremium}
-            isFavorite={offer.isFavorite}
-            rating={offer.rating}
-            previewImage={offer.previewImage}
-            isOffer={isOffer}
-          />
-        ))
-      }
-    </div>
-  </section>
-);
+const NearPlaces = ({ otherOffersData }: NearPlacesPropsType) => {
+
+  const CLASS_NAME = 'near-places';
+
+  return(
+    <section className="near-places places">
+      <h2 className="near-places__title">Other places in the neighbourhood</h2>
+      <div className="near-places__list places__list">
+        {
+          structuredClone(otherOffersData).map((offer) => (
+            <PlaceCard
+              key={offer.id}
+              title={offer.title}
+              type={offer.type}
+              price={offer.price}
+              isPremium={offer.isPremium}
+              isFavorite={offer.isFavorite}
+              rating={offer.rating}
+              previewImage={offer.previewImage}
+              className={CLASS_NAME}
+            />
+          ))
+        }
+      </div>
+    </section>
+  );
+};
 
 export default NearPlaces;

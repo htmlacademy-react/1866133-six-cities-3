@@ -9,35 +9,36 @@ type PlaceCardPropsType = {
   isFavorite: boolean;
   rating: number;
   previewImage: string;
-  isOffer?: boolean;
+  className: string;
 }
 
 const PlaceCard = ({
-  title, type, price, isPremium, isFavorite, rating, previewImage, isOffer
+  title, type, price, isPremium, isFavorite, rating, previewImage, className
 }: PlaceCardPropsType): JSX.Element => {
 
   const upgradeType = capitalizeFirstLetter(type);
 
   return (
-    <article
-      className={`${isOffer ? 'near-places__card' : 'cities__card'} place-card`}
-    >
+    <article className={`${className}__card place-card`}>
       {isPremium && (
         <div className="place-card__mark">
           <span>Premium</span>
         </div>
       )}
       <div
-        className={`place-card__image-wrapper ${isOffer
-          ? 'near-places__image-wrapper'
-          : 'cities__image-wrapper'}
-        `}
+        className={`${className}__image-wrapper place-card__image-wrapper`}
       >
         <a href="#">
-          <img className="place-card__image" src={previewImage} width="260" height="200" alt="Place image" />
+          <img
+            className="place-card__image"
+            src={previewImage}
+            width={`${className === 'favorites' ? '150' : '260'}`}
+            height={`${className === 'favorites' ? '110' : '200'}`}
+            alt="Place image"
+          />
         </a>
       </div>
-      <div className="place-card__info">
+      <div className={`${className === 'favorites' ? 'favorites__card-info' : ''} place-card__info `}>
         <div className="place-card__price-wrapper">
           <div className="place-card__price">
             <b className="place-card__price-value">&euro;{price} </b>
@@ -50,7 +51,9 @@ const PlaceCard = ({
             <svg className="place-card__bookmark-icon" width="18" height="19">
               <use xlinkHref="#icon-bookmark"></use>
             </svg>
-            <span className="visually-hidden">To bookmarks</span>
+            <span className="visually-hidden">
+              ${isFavorite ? 'In bookmarks' : 'To bookmarks'}
+            </span>
           </button>
         </div>
         <div className="place-card__rating rating">

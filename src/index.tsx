@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import App from './App';
+// import App from './App';
+import Favorites from './pages/favorites/favorites';
 //import Offer from './pages/offer/offer';
 
 const root = ReactDOM.createRoot(
@@ -9,7 +10,8 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <React.StrictMode>
-    < App />
+    {/* < App /> */}
     {/* < Offer /> */}
+    < Favorites />
   </React.StrictMode>
 );
