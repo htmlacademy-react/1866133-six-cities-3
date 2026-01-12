@@ -1,8 +1,12 @@
+import { Helmet } from 'react-helmet-async';
 import LoginForm from './components/login-form/login-form';
 
 
 const Login = () => (
   <div className="page page--gray page--login">
+    <Helmet>
+      <title>Страница авторизации пользователя!</title>
+    </Helmet>
     <header className="header">
       <div className="container">
         <div className="header__wrapper">

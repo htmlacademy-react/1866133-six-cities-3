@@ -11,6 +11,7 @@ import NearPlaces from './components/near-places/near-places';
 import OfferMap from './components/offer-map/offer-map';
 import OfferPrice from './components/offer-price/offer-price';
 import OfferFeatures from './components/offer-features/offer-features';
+import {Helmet} from 'react-helmet-async';
 
 const Offer = ():JSX.Element => {
 
@@ -36,6 +37,9 @@ const Offer = ():JSX.Element => {
   return (
 
     <div className="page">
+      <Helmet>
+        <title>Предложение по аренде жилья!</title>
+      </Helmet>
       <Header />
       <main className="page__main page__main--offer">
         <section className="offer">
