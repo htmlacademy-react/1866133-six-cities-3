@@ -1,5 +1,8 @@
 import { Helmet } from 'react-helmet-async';
 import LoginForm from './components/login-form/login-form';
+import { Link } from 'react-router-dom';
+import { getRandomInteger } from '../../utils/common';
+import { citieNames } from '../../const';
 
 
 const Login = () => (
@@ -15,9 +18,9 @@ const Login = () => (
       </section>
       <section className="locations locations--login locations--current">
         <div className="locations__item">
-          <a className="locations__item-link" href="#">
-            <span>Amsterdam</span>
-          </a>
+          <Link className="locations__item-link" to="#">
+            <span>{citieNames[getRandomInteger(0, citieNames.length - 1)]}</span>
+          </Link>
         </div>
       </section>
     </div>

@@ -4,7 +4,7 @@ import {HousingType} from '../const.ts';
 export type OfferType = {
     id: string;
     title: string;
-    type: `${HousingType.Apartment}` | `${HousingType.Hotel}` | `${HousingType.House}` | `${HousingType.Room}`;
+    type: HousingType;
     price: number;
     city: {
       name: string;

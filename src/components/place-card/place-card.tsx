@@ -1,7 +1,6 @@
 import { HousingType,
   PREVIEW_IMAGE_SIZE_DEFAULT,
   PREVIEW_IMAGE_SIZE_FAVORITES,
-  //VALUTES
 } from '../../const';
 
 import { capitalizeFirstLetter } from '../../utils/common';
@@ -20,7 +19,7 @@ type PlaceCardPropsType = {
 
 const PlaceCard = ({
   title, type, price, isPremium, isFavorite, rating, previewImage, className
-}: PlaceCardPropsType): JSX.Element => {
+}: PlaceCardPropsType) => {
 
   const upgradeType = capitalizeFirstLetter(type);
 

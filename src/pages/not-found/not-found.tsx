@@ -1,4 +1,5 @@
 import {Link} from 'react-router-dom';
+import { AppRoute } from '../../const';
 
 export const NotFound = () => (
   <div
@@ -8,7 +9,7 @@ export const NotFound = () => (
     }}
   >
     <p>404 Not Found</p>
-    <Link to='/'>Перейти на главную</Link>
+    <Link to={AppRoute.Root}>Перейти на главную</Link>
   </div>
 );
 

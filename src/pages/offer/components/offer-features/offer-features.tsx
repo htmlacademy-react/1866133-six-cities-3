@@ -2,7 +2,7 @@ import { HousingType } from '../../../../const';
 import { capitalizeFirstLetter } from '../../../../utils/common';
 
 type OfferFeaturesPropsType = {
-  type: `${HousingType.Apartment}` | `${HousingType.Hotel}` | `${HousingType.House}` | `${HousingType.Room}`;
+  type: HousingType;
   bedrooms: number;
   maxAdults: number;
 }
