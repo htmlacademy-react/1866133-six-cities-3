@@ -50,7 +50,7 @@ const App = ({offersData, favoriteData, otherOffersData}: AppPropsType) => (
             element = {<Login />}
           />
           <Route
-            path = {AppRoute.Offer}
+            path = {`${AppRoute.Offer}/:id`}
             element = {<Offer offers={offersData} otherOffers={otherOffersData} />}
           />
         </Route>

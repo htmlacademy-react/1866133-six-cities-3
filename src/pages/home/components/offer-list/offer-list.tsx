@@ -8,8 +8,8 @@ type OfferListPropsType = {
 
 export const OfferList = ({ offers }: OfferListPropsType) => {
 
-  const [activeCard, setActiveCard] = useState<null | OfferType>(null);
-  window.console.log('activeCard', activeCard);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [_activeCard, setActiveCard] = useState<null | OfferType>(null);
 
   const handleHoverCard = (offer?: OfferType) => {
     setActiveCard(offer || null);

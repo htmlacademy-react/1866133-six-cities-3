@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import {
+  AppRoute,
   PREVIEW_IMAGE_SIZE_DEFAULT,
   PREVIEW_IMAGE_SIZE_FAVORITES,
 } from '../../const';
@@ -49,7 +50,7 @@ const PlaceCard = ({
       <div
         className={`${className}__image-wrapper place-card__image-wrapper`}
       >
-        <Link to={`/offer/${id}`}>
+        <Link to={`${AppRoute.Offer}/${id}`}>
           <img
             className="place-card__image"
             src={previewImage}

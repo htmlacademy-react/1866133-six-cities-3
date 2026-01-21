@@ -8,13 +8,7 @@ type FavoritesPropsType = {
 
 const Favorites = ({favorites}: FavoritesPropsType) => {
 
-  const uniqueCityNames: string[] = [];
-
-  favorites.forEach((item) => {
-    if (!uniqueCityNames.includes(item.city.name)) {
-      uniqueCityNames.push(item.city.name);
-    }
-  });
+  const uniqueCityNames: string[] = [...new Set(favorites.map((item) => item.city.name))];
 
   return (
     <main className="page__main page__main--favorites">

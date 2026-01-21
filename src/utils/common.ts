@@ -25,11 +25,11 @@ const getLayoutState = (pathname: AppRoute) => {
   return {rootClassName, linkClassName, shouldRenderUser, shouldRenderFooter};
 };
 
-const getRandomInteger = (a:number, b:number): number => {
+const getRandomIntInRange = (a:number, b:number): number => {
   const lower = Math.ceil(Math.min(a, b));
   const upper = Math.floor(Math.max(a, b));
   const result = Math.random() * (upper - lower + 1) + lower;
   return Math.floor(result);
 };
 
-export { capitalizeFirstLetter, formatDate, getLayoutState, getRandomInteger };
+export { capitalizeFirstLetter, formatDate, getLayoutState, getRandomIntInRange };

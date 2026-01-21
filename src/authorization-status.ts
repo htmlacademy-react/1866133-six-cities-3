@@ -1,3 +1,3 @@
 import { AutorizationStatus } from './const';
 
-export const getAutorizationStatus = () => AutorizationStatus.NoAuth;
+export const getAutorizationStatus = () => AutorizationStatus.Auth;

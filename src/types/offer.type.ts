@@ -46,16 +46,3 @@ export type ShortenedOfferType = {
   rating: number;
   previewImage: string;
 };
-
-// export type OtherOffersType = Array<{
-//   id: string;
-//   title: string;
-//   type: string;
-//   price: number;
-//   previewImage: string;
-//   city: CityType;
-//   location: LocationCoordinatesType;
-//   isFavorite: boolean;
-//   isPremium: boolean;
-//   rating: number;
-// }>;

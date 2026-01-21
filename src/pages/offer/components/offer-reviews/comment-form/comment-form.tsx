@@ -93,7 +93,9 @@ const CommentForm = () => {
         <button
           className="reviews__submit form__submit button"
           type="submit"
-          disabled = {formData.rating === 0 || formData.review.length < 50}
+          disabled = {formData.rating === 0 ||
+            formData.review.length < 50 ||
+            formData.review.length > 300}
         >
           Submit
         </button>

@@ -8,27 +8,30 @@ type CityPropsType = {
 }
 
 
-export const City = ({cityName, favorites}: CityPropsType) => (
+export const City = ({ cityName, favorites }: CityPropsType) => {
 
-  <li className="favorites__locations-items" key={cityName}>
-    <div className="favorites__locations locations locations--current">
-      <div className="locations__item">
-        <Link className="locations__item-link" to="#">
-          <span>{cityName}</span>
-        </Link>
+  const favoriteCityOffers = favorites.filter((favoriteOffer) => favoriteOffer.city.name === cityName);
+
+  return (
+    <li className="favorites__locations-items" key={cityName}>
+      <div className="favorites__locations locations locations--current">
+        <div className="locations__item">
+          <Link className="locations__item-link" to="#">
+            <span>{cityName}</span>
+          </Link>
+        </div>
       </div>
-    </div>
-    <div className="favorites__places">
-      {
-        favorites.filter((favoriteOffer) => favoriteOffer.city.name === cityName)
-          .map((offer) => (
+      <div className="favorites__places">
+        {
+          favoriteCityOffers.map((offer) => (
             <PlaceCard
               key={offer.id}
               offer={offer}
               className={'favorites'}
             />
           ))
-      }
-    </div>
-  </li>
-);
+        }
+      </div>
+    </li>
+  );
+};
