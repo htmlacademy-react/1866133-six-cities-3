@@ -1,23 +1,14 @@
 
-const MOCK_INSIDE_LIST = [
-  'Wi-Fi',
-  'Washing machine',
-  'Towels',
-  'Heating',
-  'Coffee machine',
-  'Baby seat',
-  'Kitchen',
-  'Dishwasher',
-  'Cabel TV',
-  'Fridge'
-];
+type OfferInsidePropsType = {
+  goods: string[];
+}
 
-const OfferInside = (): JSX.Element => (
+const OfferInside = ({goods}: OfferInsidePropsType) => (
   <div className="offer__inside">
     <h2 className="offer__inside-title">What&apos;s inside</h2>
     <ul className="offer__inside-list">
       {
-        MOCK_INSIDE_LIST.map((item) => (
+        goods.map((item) => (
           <li className="offer__inside-item" key={item}>
             {item}
           </li>

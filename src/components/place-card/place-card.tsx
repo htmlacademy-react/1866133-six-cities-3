@@ -50,7 +50,6 @@ const PlaceCard = ({
       <div
         className={`${className}__image-wrapper place-card__image-wrapper`}
       >
-        {/* <Link to={`${AppRoute.Offer}/${id}`}> */}
         <Link to={generatePath(AppRoute.Offer, { id: id })}>
           <img
             className="place-card__image"

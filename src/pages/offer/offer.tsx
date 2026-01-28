@@ -37,6 +37,7 @@ const Offer: React.FC<OffersDataPropsType> = ({offers, otherOffers}: OffersDataP
     rating,
     description,
     bedrooms,
+    goods,
     host,
     images,
     maxAdults
@@ -70,7 +71,7 @@ const Offer: React.FC<OffersDataPropsType> = ({offers, otherOffers}: OffersDataP
               maxAdults={maxAdults}
             />
             <OfferPrice price={price}/>
-            <OfferInside />
+            <OfferInside goods={goods}/>
             <OfferHost
               host={host}
               description={description}
