@@ -1,3 +1,4 @@
+import { StarRating } from '../../../../../components/star-rating/star-rating.tsx';
 import { CommentsDataType } from '../../../../../types/comments.type.ts';
 import { formatDate } from '../../../../../utils/common.ts';
 
@@ -37,7 +38,7 @@ const ReviewsList = ({ commentsData }: ReviewsListPropsType) => (
             <div className="reviews__info">
               <div className="reviews__rating rating">
                 <div className="reviews__stars rating__stars">
-                  <span style={{ width: `${rating * 20}%` }}></span>
+                  <StarRating rating={rating}/>
                   <span className="visually-hidden">Rating</span>
                 </div>
               </div>

@@ -1,28 +1,23 @@
 import PlaceCard from '../../../../components/place-card/place-card';
 import { OfferType } from '../../../../types/offer.type';
-import { useState } from 'react';
+
 
 type OfferListPropsType = {
   offers: OfferType[];
+  handleHoverCard: (offer?: OfferType) => void;
 }
 
-export const OfferList = ({ offers }: OfferListPropsType) => {
-
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [_activeCard, setActiveCard] = useState<null | OfferType>(null);
-
-  const handleHoverCard = (offer?: OfferType) => {
-    setActiveCard(offer || null);
-  };
-
-  return (
-    offers.map((offer) => (
-      <PlaceCard
-        key={offer.id}
-        offer={offer}
-        handleHoverCard={handleHoverCard}
-        className={'cities'}
-      />
-    ))
-  );
-};
+export const OfferList = ({ offers, handleHoverCard }: OfferListPropsType) => (
+  <div className="cities__places-list places__list tabs__content">
+    {
+      offers.map((offer) => (
+        <PlaceCard
+          key={offer.id}
+          offer={offer}
+          handleHoverCard={handleHoverCard}
+          className={'cities'}
+        />
+      ))
+    }
+  </div>
+);
