@@ -4,7 +4,6 @@ import OfferInside from './components/offer-inside/offer-inside';
 import OfferHost from './components/offer-host/offer-host';
 import OfferReviews from './components/offer-reviews/offer-reviews';
 import NearPlaces from './components/near-places/near-places';
-import OfferMap from './components/offer-map/offer-map';
 import OfferPrice from './components/offer-price/offer-price';
 import OfferFeatures from './components/offer-features/offer-features';
 import {Helmet} from 'react-helmet-async';
@@ -12,14 +11,17 @@ import { OfferType, ShortenedOfferType } from '../../types/offer.type';
 import { useParams } from 'react-router-dom';
 import { NotFound } from '../not-found/not-found';
 import { FavoriteButton } from './components/favorite-button/favorite-button';
+import { CommentType } from '../../types/comments.type';
+import CitiesMap from '../home/components/cities-map/cities-map';
 
 
 type OffersDataPropsType = {
   offers: OfferType[];
   otherOffers: ShortenedOfferType[];
+  comments: CommentType[];
 }
 
-const Offer: React.FC<OffersDataPropsType> = ({offers, otherOffers}: OffersDataPropsType) => {
+const Offer: React.FC<OffersDataPropsType> = ({offers, otherOffers, comments}: OffersDataPropsType) => {
 
   const {id} = useParams();
 
@@ -76,10 +78,15 @@ const Offer: React.FC<OffersDataPropsType> = ({offers, otherOffers}: OffersDataP
               host={host}
               description={description}
             />
-            <OfferReviews />
+            <OfferReviews comments={comments}/>
           </div>
         </div>
-        <OfferMap />
+        <CitiesMap
+          coordinatesCity={currentOffer.city.location}
+          offers={[currentOffer, ...otherOffers]}
+          activeCardId={currentOffer.id}
+          className={'offer__map'}
+        />
       </section>
       <div className="container">
         <NearPlaces otherOffers={otherOffers} />

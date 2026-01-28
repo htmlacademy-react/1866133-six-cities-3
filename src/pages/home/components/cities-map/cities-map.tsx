@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import { OfferType } from '../../../../types/offer.type';
+import { OfferType, ShortenedOfferType } from '../../../../types/offer.type';
 import { useMap } from './hooks/use-map';
 import leaflet, { LayerGroup } from 'leaflet';
 import 'leaflet/dist/leaflet.css';
@@ -25,11 +25,12 @@ type CitiesMapPropsType = {
     longitude: number;
     zoom: number;
   };
-  offers: OfferType[];
+  offers: OfferType[] | ShortenedOfferType[];
   activeCardId: string;
+  className: string;
 }
 
-const CitiesMap = ({ coordinatesCity, offers, activeCardId }: CitiesMapPropsType) => {
+const CitiesMap = ({ coordinatesCity, offers, activeCardId, className }: CitiesMapPropsType) => {
 
   // создадим ссылку на section, в которой будет отрисована карта
   const mapContainerRef = useRef<HTMLDivElement>(null);
@@ -66,14 +67,11 @@ const CitiesMap = ({ coordinatesCity, offers, activeCardId }: CitiesMapPropsType
   }, [map, offers, activeCardId]);
 
   return (
-    <div className="cities__right-section">
-      <section
-        className="cities__map map"
-        ref={mapContainerRef}
-        style={{ height: '100%' }}
-      >
-      </section>
-    </div>
+    <section
+      className={`map ${className}`}
+      ref={mapContainerRef}
+    >
+    </section>
   );
 };
 

@@ -39,11 +39,14 @@ const Home = ({ offersCount, offersData }: HomePropsType) => {
               handleHoverCard={handleHoverCard}
             />
           </section>
-          <CitiesMap
-            coordinatesCity={coordinatesCity}
-            offers={filteredOffers}
-            activeCardId={activeCard ? activeCard.id : ''}
-          />
+          <div className="cities__right-section">
+            <CitiesMap
+              coordinatesCity={coordinatesCity}
+              offers={filteredOffers}
+              activeCardId={activeCard ? activeCard.id : ''}
+              className={'cities__map'}
+            />
+          </div>
         </div>
       </div>
     </main>

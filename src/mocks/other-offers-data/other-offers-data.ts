@@ -10,14 +10,14 @@ export const otherOffersData: ShortenedOfferType[] = [
     'city': {
       'name': 'Amsterdam',
       'location': {
-        'latitude': 48.85661,
-        'longitude': 2.351499,
+        'latitude': 52.37454,
+        'longitude': 4.897976,
         'zoom': 13
       }
     },
     'location': {
-      'latitude': 48.858610000000006,
-      'longitude': 2.330499,
+      'latitude': 52.3509553943508,
+      'longitude': 4.95309666406198,
       'zoom': 16
     },
     'isFavorite': true,
@@ -33,14 +33,14 @@ export const otherOffersData: ShortenedOfferType[] = [
     'city': {
       'name': 'Amsterdam',
       'location': {
-        'latitude': 48.85661,
-        'longitude': 2.351499,
+        'latitude': 52.37454,
+        'longitude': 4.897976,
         'zoom': 13
       }
     },
     'location': {
-      'latitude': 48.834610000000005,
-      'longitude': 2.335499,
+      'latitude': 52.3509583943508,
+      'longitude': 4.85319666406198,
       'zoom': 16
     },
     'isFavorite': false,
@@ -56,14 +56,14 @@ export const otherOffersData: ShortenedOfferType[] = [
     'city': {
       'name': 'Amsterdam',
       'location': {
-        'latitude': 48.85661,
-        'longitude': 2.351499,
+        'latitude': 52.37454,
+        'longitude': 4.897976,
         'zoom': 13
       }
     },
     'location': {
-      'latitude': 48.85761,
-      'longitude': 2.358499,
+      'latitude': 52.3809553943508,
+      'longitude': 4.88309666406198,
       'zoom': 16
     },
     'isFavorite': false,

@@ -1,7 +1,7 @@
-import { CommentsDataType } from '../../types/comments.type.ts';
+import { CommentType } from '../../types/comments.type.ts';
 
 
-export const commentsData: CommentsDataType = [
+export const commentsData: CommentType[] = [
   {
     'id': 'b67ddfd5-b953-4a30-8c8d-bd083cd6b62a',
     'date': '2019-05-08T14:13:56.569Z',
@@ -10,7 +10,7 @@ export const commentsData: CommentsDataType = [
       'avatarUrl': 'https://url-to-image/image.png',
       'isPro': false
     },
-    'comment': 'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.',
+    'comment': 'A quiet cozy-mozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.',
     'rating': 4
   }
 ];

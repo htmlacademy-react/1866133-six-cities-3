@@ -10,6 +10,7 @@ import ScrollToTop from './components/scroll-to-top/scroll-to-top';
 import {HelmetProvider} from 'react-helmet-async';
 import { Layout } from './components/layout/layout';
 import { OfferType, ShortenedOfferType } from './types/offer.type';
+import { CommentType } from './types/comments.type';
 
 const OFFERS_COUNT = 5;
 
@@ -17,9 +18,10 @@ type AppPropsType = {
   offersData: OfferType[];
   favoriteData: ShortenedOfferType[];
   otherOffersData: ShortenedOfferType[];
+  commentsData: CommentType[];
 }
 
-const App = ({offersData, favoriteData, otherOffersData}: AppPropsType) => (
+const App = ({offersData, favoriteData, otherOffersData, commentsData}: AppPropsType) => (
   <HelmetProvider>
     <BrowserRouter>
       <ScrollToTop />
@@ -51,7 +53,13 @@ const App = ({offersData, favoriteData, otherOffersData}: AppPropsType) => (
           />
           <Route
             path = {AppRoute.Offer}
-            element = {<Offer offers={offersData} otherOffers={otherOffersData} />}
+            element = {
+              <Offer
+                offers={offersData}
+                otherOffers={otherOffersData}
+                comments={commentsData}
+              />
+            }
           />
         </Route>
         <Route
