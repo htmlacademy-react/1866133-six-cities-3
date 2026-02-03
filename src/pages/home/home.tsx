@@ -4,15 +4,16 @@ import FormSorting from './components/form-sorting/form-sorting';
 import { OfferType } from '../../types/offer.type';
 import { OfferList } from './components/offer-list/offer-list';
 import { useState } from 'react';
+import { useAppSelector } from '../../hooks';
+import { useSearchParams } from 'react-router-dom';
+import { citieNames } from '../../const';
+import OfferListEmpty from '../../components/offer-list-empty/offer-list-empty';
 
 
-type HomePropsType = {
-  offersCount: number;
-  offersData: OfferType[];
-}
+const Home = () => {
 
-const Home = ({ offersCount, offersData }: HomePropsType) => {
-
+  const [searchParams] = useSearchParams();
+  const selectedCity = searchParams.get('city') || citieNames[0];
 
   const [activeCard, setActiveCard] = useState<null | OfferType>(null);
 
@@ -20,35 +21,41 @@ const Home = ({ offersCount, offersData }: HomePropsType) => {
     setActiveCard(offer || null);
   };
 
-  const selectedCity = 'Amsterdam';
-  const filteredOffers = offersData.filter((offer) => offer.city.name === selectedCity);
-  const coordinatesCity = filteredOffers[0].city.location;
+  const offers = useAppSelector((state) => state.offers);
+
+  const filteredOffers = offers.filter((offer) => offer.city.name === selectedCity);
+
+  const isEmpty = filteredOffers.length === 0;
 
   return (
-    <main className="page__main page__main--index">
+    <main className={`page__main page__main--index ${isEmpty ? 'page__main--index-empty' : ''}`}>
       <h1 className="visually-hidden">Cities</h1>
-      <NavTabs />
-      <div className="cities">
-        <div className="cities__places-container container">
-          <section className="cities__places places">
-            <h2 className="visually-hidden">Places</h2>
-            <b className="places__found">{offersCount} places to stay in Amsterdam</b>
-            <FormSorting />
-            <OfferList
-              offers={offersData}
-              handleHoverCard={handleHoverCard}
-            />
-          </section>
-          <div className="cities__right-section">
-            <CitiesMap
-              coordinatesCity={coordinatesCity}
-              offers={filteredOffers}
-              activeCardId={activeCard ? activeCard.id : ''}
-              className={'cities__map'}
-            />
+      <NavTabs selectedCity={selectedCity} />
+      {isEmpty
+        ? <OfferListEmpty />
+        : (
+          <div className="cities">
+            <div className="cities__places-container container">
+              <section className="cities__places places">
+                <h2 className="visually-hidden">Places</h2>
+                <b className="places__found">{filteredOffers.length} places to stay in {selectedCity}</b>
+                <FormSorting />
+                <OfferList
+                  offers={filteredOffers}
+                  handleHoverCard={handleHoverCard}
+                />
+              </section>
+              <div className="cities__right-section">
+                <CitiesMap
+                  coordinatesCity={filteredOffers[0].city.location}
+                  offers={filteredOffers}
+                  activeCardId={activeCard ? activeCard.id : ''}
+                  className={'cities__map'}
+                />
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
+        )}
     </main>
   );
 };

@@ -5,19 +5,25 @@ import { offersData } from './mocks/offers-data/offers-data';
 import { favoriteData } from './mocks/favorite-data/favorite-data';
 import { otherOffersData } from './mocks/other-offers-data/other-offers-data';
 import { commentsData } from './mocks/comments-data/comments-data';
+import { Provider } from 'react-redux';
+import { store } from './store';
+import { addOffersAction } from './store/actions/action';
 
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 
+store.dispatch(addOffersAction(offersData));
+
 root.render(
   <React.StrictMode>
-    < App
-      offersData={offersData}
-      favoriteData={favoriteData}
-      otherOffersData={otherOffersData}
-      commentsData={commentsData}
-    />
+    <Provider store={store}>
+      <App
+        favoriteData={favoriteData}
+        otherOffersData={otherOffersData}
+        commentsData={commentsData}
+      />
+    </Provider>
   </React.StrictMode>
 );

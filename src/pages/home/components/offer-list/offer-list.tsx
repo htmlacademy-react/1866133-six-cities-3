@@ -1,9 +1,9 @@
 import PlaceCard from '../../../../components/place-card/place-card';
-import { OfferType } from '../../../../types/offer.type';
+import { OfferType, ShortenedOfferType } from '../../../../types/offer.type';
 
 
 type OfferListPropsType = {
-  offers: OfferType[];
+  offers: ShortenedOfferType[];
   handleHoverCard: (offer?: OfferType) => void;
 }
 

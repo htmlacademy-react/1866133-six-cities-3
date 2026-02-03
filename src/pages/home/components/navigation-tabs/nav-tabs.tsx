@@ -1,22 +1,32 @@
 
-import {citieNames} from '../../../../const';
+import { Link } from 'react-router-dom';
+import { AppRoute, citieNames } from '../../../../const';
 
 
-const NavTabs = () => (
+type NavTabsPropsType = {
+  selectedCity: string;
+}
+
+
+const NavTabs = ({ selectedCity }: NavTabsPropsType) => (
   <div className="tabs">
     <section className="locations container">
       <ul className="locations__list tabs__list">
         {
-          citieNames.map((name, index) => (
+          citieNames.map((cityName) => (
 
-            <li className="locations__item" key={name}>
-              <a
-                // временное решение
-                className={`locations__item-link tabs__item ${index === 3 ? 'tabs__item--active' : ''}`}
-                href="#"
+            <li className="locations__item" key={cityName}>
+              <Link
+                className={`locations__item-link tabs__item
+                  ${cityName === selectedCity ? 'tabs__item--active' : ''}
+                `}
+                to={{
+                  pathname: AppRoute.Root,
+                  search: `?city=${cityName}`,
+                }}
               >
-                <span>{name}</span>
-              </a>
+                <span>{cityName}</span>
+              </Link>
             </li>
           ))
         }

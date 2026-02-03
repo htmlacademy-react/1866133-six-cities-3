@@ -13,15 +13,17 @@ import { NotFound } from '../not-found/not-found';
 import { FavoriteButton } from './components/favorite-button/favorite-button';
 import { CommentType } from '../../types/comments.type';
 import CitiesMap from '../home/components/cities-map/cities-map';
+import { useAppSelector } from '../../hooks';
 
 
 type OffersDataPropsType = {
-  offers: OfferType[];
   otherOffers: ShortenedOfferType[];
   comments: CommentType[];
 }
 
-const Offer: React.FC<OffersDataPropsType> = ({offers, otherOffers, comments}: OffersDataPropsType) => {
+const Offer: React.FC<OffersDataPropsType> = ({otherOffers, comments}: OffersDataPropsType) => {
+
+  const offers: OfferType[] = useAppSelector((state) => state.offers);
 
   const {id} = useParams();
 
