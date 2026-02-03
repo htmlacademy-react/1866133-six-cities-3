@@ -168,5 +168,157 @@ export const offersData: OfferType[] = [
       'https://15.design.htmlacademy.pro/static/hotel/2.jpg',
     ],
     'maxAdults': 1
+  },
+  {
+    'id': '5',
+    'title': 'Nice, cozy, warm big bed apartment',
+    'type': 'apartment',
+    'price': 180,
+    'previewImage': 'https://15.design.htmlacademy.pro/static/hotel/5.jpg',
+    'city': {
+      'name': 'Paris',
+      'location': {
+        'latitude': 48.85661,
+        'longitude': 2.351499,
+        'zoom': 13
+      }
+    },
+    'location': {
+      'latitude': 48.868610000000004,
+      'longitude': 2.342499,
+      'zoom': 16
+    },
+    'isFavorite': false,
+    'isPremium': true,
+    'rating': 3.7,
+    'description': 'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Brussels.',
+    'bedrooms': 1,
+    'goods': [
+      'Heating'
+    ],
+    'host': {
+      'name': 'Rita',
+      'avatarUrl': 'https://url-to-image/image.png',
+      'isPro': true
+    },
+    'images': [
+      'https://15.design.htmlacademy.pro/static/hotel/1.jpg',
+      'https://15.design.htmlacademy.pro/static/hotel/2.jpg',
+    ],
+    'maxAdults': 1
+  },
+  {
+    'id': '6',
+    'title': 'Nice, cozy, warm big bed apartment',
+    'type': 'apartment',
+    'price': 180,
+    'previewImage': 'https://15.design.htmlacademy.pro/static/hotel/5.jpg',
+    'city': {
+      'name': 'Cologne',
+      'location': {
+        'latitude': 50.938361,
+        'longitude': 6.959974,
+        'zoom': 13
+      }
+    },
+    'location': {
+      'latitude': 50.934361,
+      'longitude': 6.943974,
+      'zoom': 16
+    },
+    'isFavorite': false,
+    'isPremium': true,
+    'rating': 3.7,
+    'description': 'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Brussels.',
+    'bedrooms': 1,
+    'goods': [
+      'Heating'
+    ],
+    'host': {
+      'name': 'Rita',
+      'avatarUrl': 'https://url-to-image/image.png',
+      'isPro': true
+    },
+    'images': [
+      'https://15.design.htmlacademy.pro/static/hotel/1.jpg',
+      'https://15.design.htmlacademy.pro/static/hotel/2.jpg',
+    ],
+    'maxAdults': 1
+  },
+  {
+    'id': '7',
+    'title': 'Nice, cozy, warm big bed apartment',
+    'type': 'apartment',
+    'price': 180,
+    'previewImage': 'https://15.design.htmlacademy.pro/static/hotel/5.jpg',
+    'city': {
+      'name': 'Brussels',
+      'location': {
+        'latitude': 50.846557,
+        'longitude': 4.351697,
+        'zoom': 13
+      }
+    },
+    'location': {
+      'latitude': 50.867557,
+      'longitude': 4.371696999999999,
+      'zoom': 16
+    },
+    'isFavorite': false,
+    'isPremium': true,
+    'rating': 3.7,
+    'description': 'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Brussels.',
+    'bedrooms': 1,
+    'goods': [
+      'Heating'
+    ],
+    'host': {
+      'name': 'Rita',
+      'avatarUrl': 'https://url-to-image/image.png',
+      'isPro': true
+    },
+    'images': [
+      'https://15.design.htmlacademy.pro/static/hotel/1.jpg',
+      'https://15.design.htmlacademy.pro/static/hotel/2.jpg',
+    ],
+    'maxAdults': 1
+  },
+  {
+    'id': '8',
+    'title': 'Nice, cozy, warm big bed apartment',
+    'type': 'apartment',
+    'price': 180,
+    'previewImage': 'https://15.design.htmlacademy.pro/static/hotel/5.jpg',
+    'city': {
+      'name': 'Hamburg',
+      'location': {
+        'latitude': 53.550341,
+        'longitude': 10.000654,
+        'zoom': 13
+      }
+    },
+    'location': {
+      'latitude': 53.563341,
+      'longitude': 10.019654000000001,
+      'zoom': 16
+    },
+    'isFavorite': false,
+    'isPremium': true,
+    'rating': 3.7,
+    'description': 'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Brussels.',
+    'bedrooms': 1,
+    'goods': [
+      'Heating'
+    ],
+    'host': {
+      'name': 'Rita',
+      'avatarUrl': 'https://url-to-image/image.png',
+      'isPro': true
+    },
+    'images': [
+      'https://15.design.htmlacademy.pro/static/hotel/1.jpg',
+      'https://15.design.htmlacademy.pro/static/hotel/2.jpg',
+    ],
+    'maxAdults': 1
   }
 ];
