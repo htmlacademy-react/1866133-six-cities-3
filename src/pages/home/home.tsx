@@ -6,7 +6,7 @@ import { OfferList } from './components/offer-list/offer-list';
 import { useState } from 'react';
 import { useAppSelector } from '../../hooks';
 import { useSearchParams } from 'react-router-dom';
-import { citieNames } from '../../const';
+import { citieNames, SortOption } from '../../const';
 import OfferListEmpty from '../../components/offer-list-empty/offer-list-empty';
 
 
@@ -14,6 +14,8 @@ const Home = () => {
 
   const [searchParams] = useSearchParams();
   const selectedCity = searchParams.get('city') || citieNames[0];
+
+  const [selectedSort, setSelectedSort] = useState<number>(SortOption.Popular);
 
   const [activeCard, setActiveCard] = useState<null | OfferType>(null);
 
@@ -27,6 +29,22 @@ const Home = () => {
 
   const isEmpty = filteredOffers.length === 0;
 
+  let sortedOffers = [];
+
+
+  switch(selectedSort) {
+    case SortOption.PriceLowToHigh:
+      sortedOffers = filteredOffers.toSorted((a, b) => a.price - b.price);
+      break;
+    case SortOption.PriceHighToLow:
+      sortedOffers = filteredOffers.toSorted((a, b) => b.price - a.price);
+      break;
+    case SortOption.TopRatedFirst:
+      sortedOffers = filteredOffers.toSorted((a, b) => b.rating - a.rating);
+      break;
+    default: sortedOffers = filteredOffers;
+  }
+
   return (
     <main className={`page__main page__main--index ${isEmpty ? 'page__main--index-empty' : ''}`}>
       <h1 className="visually-hidden">Cities</h1>
@@ -39,9 +57,12 @@ const Home = () => {
               <section className="cities__places places">
                 <h2 className="visually-hidden">Places</h2>
                 <b className="places__found">{filteredOffers.length} places to stay in {selectedCity}</b>
-                <FormSorting />
+                <FormSorting
+                  selectedSort={selectedSort}
+                  setSelectedSort={setSelectedSort}
+                />
                 <OfferList
-                  offers={filteredOffers}
+                  offers={sortedOffers}
                   handleHoverCard={handleHoverCard}
                 />
               </section>
