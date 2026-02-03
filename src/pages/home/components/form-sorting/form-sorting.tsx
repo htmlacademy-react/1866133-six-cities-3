@@ -23,7 +23,7 @@ const FormSorting = ({selectedSort, setSelectedSort}: FormSortingPropsType) => {
     setIsOpen((prev) => !prev);
   };
 
-  const handleOptionClick = (evt: { currentTarget: { textContent: string } }) => {
+  const handleOptionClick = (evt: React.MouseEvent<HTMLElement>) => {
     setSelectedSort(getIndex(evt.currentTarget.textContent));
     toggleFormSort();
   };
