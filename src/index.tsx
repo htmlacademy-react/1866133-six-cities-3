@@ -7,14 +7,14 @@ import { otherOffersData } from './mocks/other-offers-data/other-offers-data';
 import { commentsData } from './mocks/comments-data/comments-data';
 import { Provider } from 'react-redux';
 import { store } from './store';
-import { addOffersAction } from './store/actions/action';
+import { setOffers } from './store/offers/offers.slice';
 
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 
-store.dispatch(addOffersAction(offersData));
+store.dispatch(setOffers(offersData));
 
 root.render(
   <React.StrictMode>

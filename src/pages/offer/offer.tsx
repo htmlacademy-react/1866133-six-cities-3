@@ -23,7 +23,7 @@ type OffersDataPropsType = {
 
 const Offer: React.FC<OffersDataPropsType> = ({otherOffers, comments}: OffersDataPropsType) => {
 
-  const offers: OfferType[] = useAppSelector((state) => state.offers);
+  const offers: OfferType[] = useAppSelector((state) => state.offers.offers);
 
   const {id} = useParams();
 
