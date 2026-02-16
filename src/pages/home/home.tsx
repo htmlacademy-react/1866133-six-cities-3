@@ -28,7 +28,6 @@ const Home = () => {
   const status = useAppSelector((state) => state.offers.status);
 
   if(status === RequestStatus.Loading) {
-    // return <div>Loading...</div>;
     return <Preloader />;
   }
 

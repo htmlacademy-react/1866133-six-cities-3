@@ -1,5 +1,5 @@
 import Home from './pages/home/home';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import Favorites from './pages/favorites/favorites';
 import Login from './pages/login/login';
 import Offer from './pages/offer/offer';
@@ -14,6 +14,10 @@ import { CommentType } from './types/comments.type';
 import { useAppDispatch } from './hooks';
 import { useEffect } from 'react';
 import { fetchAllOffers } from './store/offers/offers.thunks';
+import { getToken } from './api/token';
+import { checkAuth } from './store/user/auth.thunks';
+import HistoryRouter from './components/history-route/history-route';
+import browserHistory from './components/browser-history/browser-history';
 
 
 type AppPropsType = {
@@ -30,9 +34,19 @@ const App = ({favoriteData, otherOffersData, commentsData}: AppPropsType) => {
     dispatch(fetchAllOffers());
   }, [dispatch]);
 
+
+  const token = getToken();
+
+  useEffect(() => {
+    if(token) {
+      checkAuth();
+    }
+  }, [token]);
+
+
   return (
     <HelmetProvider>
-      <BrowserRouter>
+      <HistoryRouter history={browserHistory}>
         <ScrollToTop />
         <Routes>
           <Route
@@ -70,7 +84,7 @@ const App = ({favoriteData, otherOffersData, commentsData}: AppPropsType) => {
             element = {<NotFound />}
           />
         </Routes>
-      </BrowserRouter>
+      </HistoryRouter>
     </HelmetProvider>
   );
 };

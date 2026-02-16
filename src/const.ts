@@ -38,7 +38,9 @@ export enum SortOption {
   TopRatedFirst = 'Top rated first'
 }
 
-export enum RequestStatus {Idle, Loading, Succes, Failed}
+export enum RequestStatus {Idle, Loading, Success, Failed}
+
+export const TIMEOUT_SHOW_ERROR = 2000;
 
 export enum APIRoute {
   Offers = '/offers',

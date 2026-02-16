@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
-import { getAutorizationStatus } from '../../../authorization-status';
-import { AppRoute, AutorizationStatus } from '../../../const';
+import { AppRoute } from '../../../const';
+import { useAuthorization } from '../../../hooks/use-authorization';
 
 type BookmarkButtonPropsType = {
   isFavorite: boolean;
@@ -15,10 +15,10 @@ const BookmarkButton = ({ isFavorite }: BookmarkButtonPropsType): JSX.Element =>
 
 
   const navigate = useNavigate();
-  const autorizationStatus = getAutorizationStatus();
+  const isAuthorized = useAuthorization();
 
   const onBookmarkButtonClick = () => {
-    if (autorizationStatus === AutorizationStatus.NoAuth) {
+    if (!isAuthorized) {
       navigate(AppRoute.Login);
     }
   };

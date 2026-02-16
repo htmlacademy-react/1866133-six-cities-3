@@ -1,10 +1,10 @@
 import { Link, Outlet, useLocation } from 'react-router-dom';
 import HeaderLogo from '../header/header-logo';
-import { AppRoute, AutorizationStatus } from '../../const';
-import { getAutorizationStatus } from '../../authorization-status';
+import { AppRoute } from '../../const';
 import { getLayoutState } from '../../utils/common';
 import { AuthorizedMenu } from '../menu/AuthorizedMenu';
 import { UnauthorizedMenu } from '../menu/UnauthorizedMenu';
+import { useAuthorization } from '../../hooks/use-authorization';
 
 
 const FOOTER_LOGO_SIZE = {
@@ -22,11 +22,9 @@ export const Layout = () => {
     shouldRenderFooter
   } = getLayoutState(pathname as AppRoute);
 
-  const autorizationStatus = getAutorizationStatus();
+  const isAuthorized = useAuthorization();
 
-  const menu = autorizationStatus === AutorizationStatus.Auth
-    ? <AuthorizedMenu />
-    : <UnauthorizedMenu />;
+  const menu = isAuthorized ? <AuthorizedMenu /> : <UnauthorizedMenu />;
 
   return (
     <div className={`page ${rootClassName}`}>

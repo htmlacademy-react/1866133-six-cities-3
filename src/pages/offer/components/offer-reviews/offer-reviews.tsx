@@ -1,6 +1,4 @@
-
-import { getAutorizationStatus } from '../../../../authorization-status';
-import { AutorizationStatus } from '../../../../const';
+import { useAuthorization } from '../../../../hooks/use-authorization';
 import { CommentType } from '../../../../types/comments.type';
 import CommentForm from './comment-form/comment-form';
 
@@ -12,13 +10,13 @@ type OfferReviewsPropsType = {
 
 const OfferReviews = ({comments}: OfferReviewsPropsType) => {
 
-  const autorizationStatus = getAutorizationStatus();
+  const isAuthorized = useAuthorization();
 
   return (
     <section className="offer__reviews reviews">
       <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{comments.length}</span></h2>
       <ReviewsList comments={comments} />
-      {autorizationStatus === AutorizationStatus.Auth && <CommentForm />}
+      {isAuthorized && <CommentForm />}
     </section>
   );
 };
