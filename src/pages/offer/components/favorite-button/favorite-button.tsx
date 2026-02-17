@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
-import { getAutorizationStatus } from '../../../../authorization-status';
-import { AppRoute, AutorizationStatus } from '../../../../const';
+import { AppRoute } from '../../../../const';
+import { useAuthorization } from '../../../../hooks/use-authorization';
 
 type FavoriteButtonPropsType = {
   isFavorite: boolean;
@@ -13,10 +13,10 @@ const ICON_SIZE = {
 
 export const FavoriteButton = ({ isFavorite }: FavoriteButtonPropsType) => {
   const navigate = useNavigate();
-  const autorizationStatus = getAutorizationStatus();
+  const isAuthorized = useAuthorization();
 
   const onFavoriteButtonClick = () => {
-    if(autorizationStatus === AutorizationStatus.NoAuth) {
+    if(!isAuthorized) {
       navigate(AppRoute.Login);
     }
   };
