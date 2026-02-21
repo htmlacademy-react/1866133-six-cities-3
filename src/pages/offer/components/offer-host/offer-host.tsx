@@ -13,7 +13,7 @@ const AVATAR_SIZE = {
   HEIGHT: '74'
 };
 
-const OfferHost = ({ host, description }: OfferHostPropsType): JSX.Element => (
+const OfferHost = ({ host, description }: OfferHostPropsType) => (
 
   <div className="offer__host">
     <h2 className="offer__host-title">Meet the host</h2>

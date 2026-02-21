@@ -1,4 +1,4 @@
-export type THost = {
+export type HostType = {
   name: string;
   avatarUrl: string;
   isPro: boolean;
@@ -29,7 +29,7 @@ export type OfferType = {
   description: string;
   bedrooms: number;
   goods: string[];
-  host: THost;
+  host: HostType;
   images: string[];
   maxAdults: number;
 };

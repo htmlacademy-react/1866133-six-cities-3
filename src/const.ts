@@ -45,9 +45,11 @@ export const TIMEOUT_SHOW_ERROR = 2000;
 export enum APIRoute {
   Offers = '/offers',
   Favorite = '/favorite',
-  Comments = '/comments/{offerId}',
+  Comments = '/comments',
   Login = '/login',
   Logout = '/logout',
 }
+
+export const SERVER_UNAVAILABLE = 'Ошибка сервера. Попробуйте ещё раз.';
 
 

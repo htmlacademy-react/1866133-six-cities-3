@@ -1,4 +1,9 @@
-import { Fragment, ReactEventHandler, useState } from 'react';
+import { FormEvent, Fragment, ReactEventHandler, useRef, useState } from 'react';
+import { useAppDispatch } from '../../../../../hooks';
+import { postCommentAction } from '../../../../../store/comments/comments.thunks';
+import { useParams } from 'react-router-dom';
+import { processErrorHandle } from '../../../../../components/process-error-handle/process-error-handle';
+import { SERVER_UNAVAILABLE } from '../../../../../const';
 
 const STARS = [
   {
@@ -37,21 +42,56 @@ type ChangeFieldHandlerType = ReactEventHandler<HTMLInputElement | HTMLTextAreaE
 
 const CommentForm = () => {
 
-  const [formData, setFormData] = useState({rating: 0, review: ''});
+  const dispatch = useAppDispatch();
+  const {id: offerId} = useParams();
+
+  const [formData, setFormData] = useState({rating: 0, comment: ''});
+  const [isDisabled, setIsDisabled] = useState<boolean>(false);
+
+  const formRef = useRef<HTMLFormElement | null>(null);
 
   const handleFieldChange:ChangeFieldHandlerType = (evt) => {
-
     const {name, value} = evt.currentTarget;
-    setFormData({ ...formData, [name]: value });
+    setFormData({
+      ...formData, [name]: name === 'rating' ? +value : value
+    });
+  };
+
+  const handleSendForm = (evt: FormEvent<HTMLFormElement>) => {
+    evt.preventDefault();
+    setIsDisabled(true);
+
+    dispatch(postCommentAction({...formData, offerId}))
+      .unwrap()
+      .then(() => {
+        setFormData({
+          ...formData,
+          rating: 0,
+          comment: ''
+        });
+        formRef.current?.reset();
+      })
+      .catch(() => {
+        processErrorHandle(SERVER_UNAVAILABLE);
+      })
+      .finally(() => {
+        setIsDisabled(false);
+      });
   };
 
   return (
-    <form className="reviews__form form" action="#" method="post">
+    <form
+      className="reviews__form form"
+      action="#"
+      method="post"
+      onSubmit={handleSendForm}
+      ref={formRef}
+    >
       <label className="reviews__label form__label" htmlFor="review">Your review</label>
       <div className="reviews__rating-form form__rating">
         {
           STARS.map((item) => (
-            <Fragment key={item.countStars}>
+            <Fragment key={item.title}>
               <input
                 className="form__rating-input visually-hidden"
                 name="rating"
@@ -59,6 +99,7 @@ const CommentForm = () => {
                 id={`${item.countStars}-${declineWord(item.countStars, WORD_FORMS)}`}
                 type="radio"
                 onChange={handleFieldChange}
+                disabled={isDisabled}
               />
               <label
                 htmlFor={`${item.countStars}-${declineWord(item.countStars, WORD_FORMS)}`}
@@ -80,10 +121,11 @@ const CommentForm = () => {
       <textarea
         className="reviews__textarea form__textarea"
         id="review"
-        name="review"
+        name="comment"
         placeholder="Tell how was your stay, what you like and what can be improved"
         defaultValue={''}
         onChange={handleFieldChange}
+        disabled={isDisabled}
       >
       </textarea>
       <div className="reviews__button-wrapper">
@@ -94,8 +136,9 @@ const CommentForm = () => {
           className="reviews__submit form__submit button"
           type="submit"
           disabled = {formData.rating === 0 ||
-            formData.review.length < 50 ||
-            formData.review.length > 300}
+            formData.comment.length < 50 ||
+            formData.comment.length > 300 ||
+            isDisabled}
         >
           Submit
         </button>

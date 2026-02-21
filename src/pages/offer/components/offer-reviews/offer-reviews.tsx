@@ -5,7 +5,7 @@ import CommentForm from './comment-form/comment-form';
 import ReviewsList from './reviews-list/reviews-list';
 
 type OfferReviewsPropsType = {
-  comments: CommentType[];
+  comments: CommentType[] | null;
 }
 
 const OfferReviews = ({comments}: OfferReviewsPropsType) => {
@@ -14,8 +14,13 @@ const OfferReviews = ({comments}: OfferReviewsPropsType) => {
 
   return (
     <section className="offer__reviews reviews">
-      <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{comments.length}</span></h2>
-      <ReviewsList comments={comments} />
+
+      {comments && (
+        <>
+          <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{comments.length}</span></h2>
+          <ReviewsList comments={comments} />
+        </>
+      )}
       {isAuthorized && <CommentForm />}
     </section>
   );

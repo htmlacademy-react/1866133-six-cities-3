@@ -12,7 +12,7 @@ const LoginForm = () => {
     password: ''
   });
 
-  const onInputChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
     const {name, value} = evt.currentTarget;
 
     setFormData({
@@ -37,7 +37,7 @@ const LoginForm = () => {
           placeholder="Email"
           required
           value={formData.email}
-          onChange={onInputChange}
+          onChange={handleInputChange}
         />
       </div>
       <div className="login__input-wrapper form__input-wrapper">
@@ -49,7 +49,7 @@ const LoginForm = () => {
           placeholder="Password"
           required
           value={formData.password}
-          onChange={onInputChange}
+          onChange={handleInputChange}
         />
       </div>
       <button className="login__submit form__submit button" type="submit">Sign in</button>

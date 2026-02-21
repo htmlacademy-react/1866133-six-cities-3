@@ -10,7 +10,6 @@ import ScrollToTop from './components/scroll-to-top/scroll-to-top';
 import {HelmetProvider} from 'react-helmet-async';
 import { Layout } from './components/layout/layout';
 import { ShortenedOfferType } from './types/offer.type';
-import { CommentType } from './types/comments.type';
 import { useAppDispatch } from './hooks';
 import { useEffect } from 'react';
 import { fetchAllOffers } from './store/offers/offers.thunks';
@@ -22,11 +21,9 @@ import browserHistory from './components/browser-history/browser-history';
 
 type AppPropsType = {
   favoriteData: ShortenedOfferType[];
-  otherOffersData: ShortenedOfferType[];
-  commentsData: CommentType[];
 }
 
-const App = ({favoriteData, otherOffersData, commentsData}: AppPropsType) => {
+const App = ({favoriteData}: AppPropsType) => {
 
   const dispatch = useAppDispatch();
 
@@ -39,9 +36,9 @@ const App = ({favoriteData, otherOffersData, commentsData}: AppPropsType) => {
 
   useEffect(() => {
     if(token) {
-      checkAuth();
+      dispatch(checkAuth());
     }
-  }, [token]);
+  }, [dispatch, token]);
 
 
   return (
@@ -72,10 +69,7 @@ const App = ({favoriteData, otherOffersData, commentsData}: AppPropsType) => {
             <Route
               path = {AppRoute.Offer}
               element = {
-                <Offer
-                  otherOffers={otherOffersData}
-                  comments={commentsData}
-                />
+                <Offer />
               }
             />
           </Route>
