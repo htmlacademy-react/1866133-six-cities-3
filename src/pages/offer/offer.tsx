@@ -6,30 +6,45 @@ import OfferReviews from './components/offer-reviews/offer-reviews';
 import NearPlaces from './components/near-places/near-places';
 import OfferPrice from './components/offer-price/offer-price';
 import OfferFeatures from './components/offer-features/offer-features';
-import {Helmet} from 'react-helmet-async';
-import { OfferType, ShortenedOfferType } from '../../types/offer.type';
+import { Helmet } from 'react-helmet-async';
 import { useParams } from 'react-router-dom';
 import { NotFound } from '../not-found/not-found';
 import { FavoriteButton } from './components/favorite-button/favorite-button';
-import { CommentType } from '../../types/comments.type';
 import CitiesMap from '../home/components/cities-map/cities-map';
-import { useAppSelector } from '../../hooks';
+import { useAppDispatch, useAppSelector } from '../../hooks';
+import { useEffect } from 'react';
+import { fetchOfferAction } from '../../store/offer/offer.thunks';
+import { fetchCommentsAction } from '../../store/comments/comments.thunks';
+import { RequestStatus } from '../../const';
+import { Preloader } from '../../components/preloader/preloader';
+import { fetchNearbyAction } from '../../store/nearby/nearby.thunks';
+import { commentsSelector, nearbySelector, offerSelector, offerStatusSelector } from '../../store';
 
 
-type OffersDataPropsType = {
-  otherOffers: ShortenedOfferType[];
-  comments: CommentType[];
-}
+const Offer = () => {
 
-const Offer: React.FC<OffersDataPropsType> = ({otherOffers, comments}: OffersDataPropsType) => {
+  const dispatch = useAppDispatch();
 
-  const offers: OfferType[] = useAppSelector((state) => state.offers.offers);
+  const currentOffer = useAppSelector(offerSelector);
+  const status = useAppSelector(offerStatusSelector);
+  const nearbyOffers = useAppSelector(nearbySelector).slice(0, 3);
+  const comments = useAppSelector(commentsSelector);
 
   const {id} = useParams();
 
-  const currentOffer: OfferType | undefined = offers.find((offer) => offer.id === id);
+  useEffect(() => {
+    Promise.all([
+      dispatch(fetchOfferAction(id as string)),
+      dispatch(fetchNearbyAction(id as string)),
+      dispatch(fetchCommentsAction(id as string))
+    ]);
+  }, [dispatch, id]);
 
-  if(!currentOffer) {
+  if (status === RequestStatus.Loading) {
+    return <Preloader />;
+  }
+
+  if(status === RequestStatus.Failed || !currentOffer) {
     return <NotFound />;
   }
 
@@ -85,13 +100,13 @@ const Offer: React.FC<OffersDataPropsType> = ({otherOffers, comments}: OffersDat
         </div>
         <CitiesMap
           coordinatesCity={currentOffer.city.location}
-          offers={[currentOffer, ...otherOffers]}
+          offers={[currentOffer, ...nearbyOffers]}
           activeCardId={currentOffer.id}
           className={'offer__map'}
         />
       </section>
       <div className="container">
-        <NearPlaces otherOffers={otherOffers} />
+        <NearPlaces otherOffers={nearbyOffers} />
       </div>
     </main>
   );
