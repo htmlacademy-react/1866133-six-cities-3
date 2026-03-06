@@ -1,6 +1,6 @@
 
 import { Link } from 'react-router-dom';
-import { AppRoute, citieNames } from '../../../../const';
+import { AppRoute, CITIE_NAMES } from '../../../../const';
 import { memo } from 'react';
 
 
@@ -14,7 +14,7 @@ const NavTabs = memo(({ selectedCity }: NavTabsPropsType) => (
     <section className="locations container">
       <ul className="locations__list tabs__list">
         {
-          citieNames.map((cityName) => (
+          CITIE_NAMES.map((cityName) => (
 
             <li className="locations__item" key={cityName}>
               <Link
@@ -23,7 +23,7 @@ const NavTabs = memo(({ selectedCity }: NavTabsPropsType) => (
                 `}
                 to={{
                   pathname: AppRoute.Root,
-                  search: `?city=${cityName}`,
+                  search: `?city=${cityName}`
                 }}
               >
                 <span>{cityName}</span>

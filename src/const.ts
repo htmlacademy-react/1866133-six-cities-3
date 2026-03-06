@@ -1,4 +1,4 @@
-export const citieNames = ['Paris', 'Cologne', 'Brussels', 'Amsterdam', 'Hamburg', 'Dusseldorf'];
+export const CITIE_NAMES = ['Paris', 'Cologne', 'Brussels', 'Amsterdam', 'Hamburg', 'Dusseldorf'];
 
 export const PREVIEW_IMAGE_SIZE_DEFAULT = {
   WIDTH: '260',

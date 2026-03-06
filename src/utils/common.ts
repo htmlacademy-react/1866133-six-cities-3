@@ -1,4 +1,5 @@
 import { AppRoute } from '../const';
+import { CommentType } from '../types/comments.type';
 
 const capitalizeFirstLetter = (word:string) => word.charAt(0).toUpperCase() + word.slice(1);
 
@@ -33,4 +34,6 @@ const getRandomIntInRange = (a:number, b:number): number => {
   return Math.floor(result);
 };
 
-export { capitalizeFirstLetter, getFormattedDate, getLayoutState, getRandomIntInRange };
+const compareComments = (comment1:CommentType, comment2:CommentType) => Date.parse(comment2.date) - Date.parse(comment1.date);
+
+export { capitalizeFirstLetter, getFormattedDate, getLayoutState, getRandomIntInRange, compareComments };

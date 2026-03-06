@@ -39,10 +39,13 @@ const Offer = () => {
   const {id: offerId} = useParams();
 
   useEffect(() => {
+    if(!offerId) {
+      return;
+    }
     Promise.all([
-      dispatch(fetchOfferAction(offerId as string)),
-      dispatch(fetchNearbyAction(offerId as string)),
-      dispatch(fetchCommentsAction(offerId as string))
+      dispatch(fetchOfferAction(offerId)),
+      dispatch(fetchNearbyAction(offerId)),
+      dispatch(fetchCommentsAction(offerId))
     ]);
   }, [dispatch, offerId]);
 
@@ -69,7 +72,7 @@ const Offer = () => {
     maxAdults
   } = currentOffer;
 
-  const onFavoriteButtonClick = () => {
+  const handleFavoriteButtonClick = () => {
     dispatch(changeFavoriteAction({offerId: id, isFavorite}));
     dispatch(fetchFavoritesAction());
     dispatch(fetchOfferAction(offerId as string));
@@ -98,7 +101,7 @@ const Offer = () => {
               <BookmarkButton
                 isFavorite={isFavorite}
                 className={'offer'}
-                onFavoriteButtonClick={onFavoriteButtonClick}
+                handleFavoriteButtonClick={handleFavoriteButtonClick}
               />
             </div>
             <OfferReting rating={rating} />

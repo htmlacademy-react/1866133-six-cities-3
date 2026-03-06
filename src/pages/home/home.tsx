@@ -6,7 +6,7 @@ import { OfferList } from './components/offer-list/offer-list';
 import { useCallback, useMemo, useState } from 'react';
 import { useAppSelector } from '../../hooks';
 import { useSearchParams } from 'react-router-dom';
-import { citieNames, RequestStatus, SortOption } from '../../const';
+import { CITIE_NAMES, RequestStatus, SortOption } from '../../const';
 import OfferListEmpty from '../../components/offer-list-empty/offer-list-empty';
 import { Preloader } from '../../components/preloader/preloader';
 import { selectOffers, selectOffersStatus } from '../../store/offers/offers.selector';
@@ -15,7 +15,7 @@ import { selectOffers, selectOffersStatus } from '../../store/offers/offers.sele
 const Home = () => {
 
   const [searchParams] = useSearchParams();
-  const selectedCity = searchParams.get('city') || citieNames[0];
+  const selectedCity = searchParams.get('city') || CITIE_NAMES[0];
 
   const offers = useAppSelector(selectOffers);
 

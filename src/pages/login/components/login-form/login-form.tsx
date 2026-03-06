@@ -5,7 +5,7 @@ import { useAppDispatch } from '../../../../hooks';
 
 const LoginForm = memo(() => {
 
-  const dispath = useAppDispatch();
+  const dispatch = useAppDispatch();
 
   const [formData, setFormData] = useState({
     email: '',
@@ -23,7 +23,7 @@ const LoginForm = memo(() => {
 
   const handleSubmit = (evt: React.FormEvent) => {
     evt.preventDefault();
-    dispath(login(formData));
+    dispatch(login(formData));
   };
 
   return (

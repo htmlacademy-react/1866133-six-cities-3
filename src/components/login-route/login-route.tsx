@@ -3,11 +3,11 @@ import { AppRoute } from '../../const';
 import { useAuthorization } from '../../hooks/use-authorization';
 
 
-type PrivateRoutePropsType = {
+type LoginRoutePropsType = {
   children: JSX.Element;
 }
 
-export const PrivateRoute = ({children}: PrivateRoutePropsType) => {
+export const LoginRoute = ({children}: LoginRoutePropsType) => {
   const isAuthorized = useAuthorization();
-  return isAuthorized ? children : <Navigate to={AppRoute.Login}/>;
+  return !isAuthorized ? children : <Navigate to={AppRoute.Root}/>;
 };

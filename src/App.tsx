@@ -17,6 +17,7 @@ import { checkAuth } from './store/user/auth.thunks';
 import HistoryRouter from './components/history-route/history-route';
 import browserHistory from './components/browser-history/browser-history';
 import { fetchFavoritesAction } from './store/favorite/favorite.thunks';
+import { LoginRoute } from './components/login-route/login-route';
 
 
 const App = () => {
@@ -36,7 +37,6 @@ const App = () => {
       dispatch(fetchFavoritesAction());
     }
   }, [dispatch, token]);
-
 
   return (
     <HelmetProvider>
@@ -61,7 +61,11 @@ const App = () => {
             />
             <Route
               path = {AppRoute.Login}
-              element = {<Login />}
+              element = {
+                <LoginRoute>
+                  <Login />
+                </LoginRoute>
+              }
             />
             <Route
               path = {AppRoute.Offer}

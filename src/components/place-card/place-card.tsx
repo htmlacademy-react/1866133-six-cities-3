@@ -41,7 +41,7 @@ const PlaceCard = ({
   const handleMouseOn = () => handleHoverCard && handleHoverCard(offer as OfferType);
   const handleMouseOff = () => handleHoverCard && handleHoverCard();
 
-  const onFavoriteButtonClick = () => {
+  const handleFavoriteButtonClick = () => {
     dispatch(changeFavoriteAction({offerId: id, isFavorite}));
     dispatch(fetchFavoritesAction());
     dispatch(fetchAllOffers());
@@ -86,7 +86,7 @@ const PlaceCard = ({
           <BookmarkButton
             isFavorite={isFavorite}
             className={'place-card'}
-            onFavoriteButtonClick={onFavoriteButtonClick}
+            handleFavoriteButtonClick={handleFavoriteButtonClick}
           />
         </div>
         <div className="place-card__rating rating">

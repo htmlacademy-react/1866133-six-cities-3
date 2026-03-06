@@ -3,13 +3,13 @@ import { AppRoute } from '../../const';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { logout } from '../../store/user/auth.thunks';
 import { selectProfile } from '../../store/user/user.selector';
-import { useFavoriteCount } from '../../hooks/use-favorite-count';
+import { selectFavorites } from '../../store/favorite/favorite.selectors';
 
 
 export const AuthorizedMenu = () => {
   const profile = useAppSelector(selectProfile);
   const dispatch = useAppDispatch();
-  const favoriteCount = useFavoriteCount();
+  const favoriteCount = useAppSelector(selectFavorites).length;
 
   return (
     <ul className="header__nav-list">
