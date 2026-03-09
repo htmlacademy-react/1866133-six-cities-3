@@ -6,6 +6,10 @@ import { processErrorHandle } from '../../../../../components/process-error-hand
 import { RequestStatus, SERVER_UNAVAILABLE } from '../../../../../const';
 import { selectPostCommentStatus } from '../../../../../store/comments/comments.selector';
 
+const COMMENT_LENGTH_MIN = 50;
+const COMMENT_LENGTH_MAX = 300;
+const RATING_EMPTY = 0;
+
 const STARS = [
   {
     countStars: 5,
@@ -134,9 +138,9 @@ const CommentForm = memo(() => {
         <button
           className="reviews__submit form__submit button"
           type="submit"
-          disabled = {formData.rating === 0 ||
-            formData.comment.length < 50 ||
-            formData.comment.length > 300 ||
+          disabled = {formData.rating === RATING_EMPTY ||
+            formData.comment.length < COMMENT_LENGTH_MIN ||
+            formData.comment.length > COMMENT_LENGTH_MAX ||
             isDisabled}
         >
           Submit

@@ -2,8 +2,8 @@ import { Link, Outlet, useLocation } from 'react-router-dom';
 import HeaderLogo from '../header-logo/header-logo';
 import { AppRoute } from '../../const';
 import { getLayoutState } from '../../utils/common';
-import { AuthorizedMenu } from '../menu/AuthorizedMenu';
-import { UnauthorizedMenu } from '../menu/UnauthorizedMenu';
+import { AuthorizedMenu } from '../menu/authorized-menu';
+import { UnauthorizedMenu } from '../menu/unauthorized-menu';
 import { useAuthorization } from '../../hooks/use-authorization';
 import Footer from '../footer/footer';
 

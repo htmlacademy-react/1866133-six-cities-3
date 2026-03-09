@@ -10,16 +10,16 @@ const SORT_OPTIONS = Object.values(SortOption);
 
 type FormSortingPropsType = {
   selectedSort: SortOption;
-  setSelectedSort: (option:SortOption) => void;
+  onSetSelectedSort: (option:SortOption) => void;
 }
 
 
-const FormSorting = ({selectedSort, setSelectedSort}: FormSortingPropsType) => {
+const FormSorting = ({selectedSort, onSetSelectedSort}: FormSortingPropsType) => {
 
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   const handleOptionClick = (index: number) => {
-    setSelectedSort(SORT_OPTIONS[index]);
+    onSetSelectedSort(SORT_OPTIONS[index]);
     setIsOpen(false);
   };
 

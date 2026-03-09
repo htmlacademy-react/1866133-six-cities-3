@@ -21,8 +21,10 @@ import { selectOffer, selectOfferStatus } from '../../store/offer/offer.selector
 import { selectNearby } from '../../store/nearby/nearby.selector';
 import { selectComments } from '../../store/comments/comments.selector';
 import BookmarkButton from '../../components/place-card/bookmark-button/bookmark-button';
-import { changeFavoriteAction, fetchFavoritesAction } from '../../store/favorite/favorite.thunks';
-import { fetchAllOffers } from '../../store/offers/offers.thunks';
+import { changeFavoriteAction } from '../../store/favorite/favorite.thunks';
+import { updateOffer } from '../../store/offer/offer.slice';
+import { updateOffers } from '../../store/offers/offers.slice';
+
 
 const NEAR_BY_OFFERS_LIMIT = 3;
 
@@ -73,10 +75,12 @@ const Offer = () => {
   } = currentOffer;
 
   const handleFavoriteButtonClick = () => {
-    dispatch(changeFavoriteAction({offerId: id, isFavorite}));
-    dispatch(fetchFavoritesAction());
-    dispatch(fetchOfferAction(offerId as string));
-    dispatch(fetchAllOffers());
+    dispatch(changeFavoriteAction({offerId: id, isFavorite}))
+      .unwrap()
+      .then((data) => {
+        dispatch(updateOffer(data));
+        dispatch(updateOffers(data));
+      });
   };
 
 
@@ -101,7 +105,7 @@ const Offer = () => {
               <BookmarkButton
                 isFavorite={isFavorite}
                 className={'offer'}
-                handleFavoriteButtonClick={handleFavoriteButtonClick}
+                onFavoriteButtonClick={handleFavoriteButtonClick}
               />
             </div>
             <OfferReting rating={rating} />

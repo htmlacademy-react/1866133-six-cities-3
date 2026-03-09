@@ -1,3 +1,4 @@
+
 import { useAppSelector } from '../../hooks';
 import { selectFavorites } from '../../store/favorite/favorite.selectors';
 import FavoritesEmpty from './components/favorites-empty';
@@ -5,7 +6,6 @@ import FavoritesList from './components/favorites-list';
 
 
 const Favorites = () => {
-
   const favorites = useAppSelector(selectFavorites);
   const hasFavorites = favorites.length > 0;
 

@@ -8,20 +8,21 @@ import { OfferType, ShortenedOfferType } from '../../types/offer.type';
 import { capitalizeFirstLetter } from '../../utils/common';
 import BookmarkButton from './bookmark-button/bookmark-button';
 import { StarRating } from '../star-rating/star-rating';
-import { changeFavoriteAction, fetchFavoritesAction } from '../../store/favorite/favorite.thunks';
+import { changeFavoriteAction } from '../../store/favorite/favorite.thunks';
 import { useAppDispatch } from '../../hooks';
-import { fetchAllOffers } from '../../store/offers/offers.thunks';
+import { updateOffers } from '../../store/offers/offers.slice';
+
 
 type PlaceCardPropsType = {
   offer: OfferType | ShortenedOfferType;
   className: string;
-  handleHoverCard?: (offer?: OfferType) => void;
+  onHoverCard?: (offer?: OfferType) => void;
 }
 
 const PlaceCard = ({
   offer,
   className,
-  handleHoverCard
+  onHoverCard
 }: PlaceCardPropsType) => {
 
   const dispatch = useAppDispatch();
@@ -38,13 +39,13 @@ const PlaceCard = ({
 
   const upgradeType = capitalizeFirstLetter(type);
 
-  const handleMouseOn = () => handleHoverCard && handleHoverCard(offer as OfferType);
-  const handleMouseOff = () => handleHoverCard && handleHoverCard();
+  const handleMouseOn = () => onHoverCard && onHoverCard(offer as OfferType);
+  const handleMouseOff = () => onHoverCard && onHoverCard();
 
   const handleFavoriteButtonClick = () => {
-    dispatch(changeFavoriteAction({offerId: id, isFavorite}));
-    dispatch(fetchFavoritesAction());
-    dispatch(fetchAllOffers());
+    dispatch(changeFavoriteAction({offerId: id, isFavorite}))
+      .unwrap()
+      .then((data) => dispatch(updateOffers(data)));
   };
 
   return (
@@ -86,7 +87,7 @@ const PlaceCard = ({
           <BookmarkButton
             isFavorite={isFavorite}
             className={'place-card'}
-            handleFavoriteButtonClick={handleFavoriteButtonClick}
+            onFavoriteButtonClick={handleFavoriteButtonClick}
           />
         </div>
         <div className="place-card__rating rating">

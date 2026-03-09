@@ -5,17 +5,17 @@ import { OfferType, ShortenedOfferType } from '../../../../types/offer.type';
 
 type OfferListPropsType = {
   offers: ShortenedOfferType[];
-  handleHoverCard: (offer?: OfferType) => void;
+  onHoverCard: (offer?: OfferType) => void;
 }
 
-export const OfferList = memo(({ offers, handleHoverCard }: OfferListPropsType) => (
+export const OfferList = memo(({ offers, onHoverCard }: OfferListPropsType) => (
   <div className="cities__places-list places__list tabs__content">
     {
       offers.map((offer) => (
         <PlaceCard
           key={offer.id}
           offer={offer}
-          handleHoverCard={handleHoverCard}
+          onHoverCard={onHoverCard}
           className={'cities'}
         />
       ))

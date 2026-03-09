@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RequestStatus } from '../../const';
 import { OfferType } from '../../types/offer.type';
 import { fetchOfferAction } from './offer.thunks';
@@ -18,7 +18,13 @@ const initialState: OfferState = {
 const offerSlice = createSlice({
   name: 'offer',
   initialState,
-  reducers: {},
+  reducers: {
+    updateOffer(state, action: PayloadAction<OfferType>) {
+      if(state.offer) {
+        state.offer.isFavorite = action.payload.isFavorite;
+      }
+    }
+  },
   extraReducers: (builder) =>
     builder
       .addCase(fetchOfferAction.pending, (state) => {
@@ -34,4 +40,5 @@ const offerSlice = createSlice({
 });
 
 export const offerReducer = offerSlice.reducer;
+export const {updateOffer} = offerSlice.actions;
 

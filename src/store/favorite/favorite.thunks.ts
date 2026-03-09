@@ -1,11 +1,11 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { OfferType, ShortenedOfferType } from '../../types/offer.type';
-import { AxiosInstance } from 'axios';
+import { AxiosError, AxiosInstance } from 'axios';
 import { APIRoute } from '../../const';
 
 
 export const fetchFavoritesAction = createAsyncThunk<ShortenedOfferType[], undefined, {extra: AxiosInstance}>(
-  'fetchFavorites',
+  'favorite/fetchFavorites',
   async(_arg, {extra: api}) => {
     const response = await api.get<ShortenedOfferType[]>(APIRoute.Favorite);
     return response.data;
@@ -20,9 +20,17 @@ type ChangePropsType = {
 
 export const changeFavoriteAction = createAsyncThunk<OfferType, ChangePropsType, {extra: AxiosInstance}>(
   'favorite/change',
-  async({offerId, isFavorite}, {extra: api}) => {
+  async({offerId, isFavorite}, {extra: api, rejectWithValue}) => {
     const status = Number(!isFavorite);
-    const response = await api.post<OfferType>(`${APIRoute.Favorite}/${offerId}/${status}`);
-    return response.data;
+
+    try {
+      const response = await api.post<OfferType>(`${APIRoute.Favorite}/${offerId}/${status}`);
+      return response.data;
+    } catch (error) {
+      if (error instanceof AxiosError) {
+        return rejectWithValue(error.message);
+      }
+      throw error;
+    }
   }
 );

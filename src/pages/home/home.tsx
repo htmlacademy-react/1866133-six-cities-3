@@ -79,11 +79,11 @@ const Home = () => {
                 <b className="places__found">{filteredOffers.length} places to stay in {selectedCity}</b>
                 <FormSorting
                   selectedSort={selectedSort}
-                  setSelectedSort={setSelectedSort}
+                  onSetSelectedSort={setSelectedSort}
                 />
                 <OfferList
                   offers={sortedOffers}
-                  handleHoverCard={handleHoverCard}
+                  onHoverCard={handleHoverCard}
                 />
               </section>
               <div className="cities__right-section">

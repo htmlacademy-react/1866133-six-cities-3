@@ -16,7 +16,6 @@ import { getToken } from './api/token';
 import { checkAuth } from './store/user/auth.thunks';
 import HistoryRouter from './components/history-route/history-route';
 import browserHistory from './components/browser-history/browser-history';
-import { fetchFavoritesAction } from './store/favorite/favorite.thunks';
 import { LoginRoute } from './components/login-route/login-route';
 
 
@@ -34,7 +33,6 @@ const App = () => {
   useEffect(() => {
     if(token) {
       dispatch(checkAuth());
-      dispatch(fetchFavoritesAction());
     }
   }, [dispatch, token]);
 

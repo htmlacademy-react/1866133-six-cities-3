@@ -6,7 +6,7 @@ import { useAuthorization } from '../../../hooks/use-authorization';
 type BookmarkButtonPropsType = {
   isFavorite: boolean;
   className: string;
-  handleFavoriteButtonClick: () => void;
+  onFavoriteButtonClick: () => void;
 }
 
 const ICON_SIZE_STANDART = {
@@ -20,7 +20,7 @@ const ICON_SIZE_LARGE = {
 };
 
 
-const BookmarkButton = ({ isFavorite, className, handleFavoriteButtonClick }: BookmarkButtonPropsType) => {
+const BookmarkButton = ({ isFavorite, className, onFavoriteButtonClick }: BookmarkButtonPropsType) => {
 
 
   const navigate = useNavigate();
@@ -30,7 +30,7 @@ const BookmarkButton = ({ isFavorite, className, handleFavoriteButtonClick }: Bo
     if (!isAuthorized) {
       navigate(AppRoute.Login);
     } else {
-      handleFavoriteButtonClick();
+      onFavoriteButtonClick();
     }
   };
 
